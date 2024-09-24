@@ -1,0 +1,32 @@
+import random
+import time
+
+class TruckDriverSimulation:
+    def __init__(self):
+        self.problems = ["Traffic", "Weather Conditions", "Vehicle Breakdown", "Road Construction", "Fatigue"]
+        self.latency = 0
+
+    def simulate_problem(self):
+        problem = random.choice(self.problems)
+        if problem == "Traffic":
+            self.latency += random.randint(10, 30)
+        elif problem == "Weather Conditions":
+            self.latency += random.randint(20, 40)
+        elif problem == "Vehicle Breakdown":
+            self.latency += random.randint(30, 60)
+        elif problem == "Road Construction":
+            self.latency += random.randint(15, 35)
+        elif problem == "Fatigue":
+            self.latency += random.randint(5, 15)
+        return problem
+
+    def run_simulation(self, duration):
+        start_time = time.time()
+        while time.time() - start_time < duration:
+            problem = self.simulate_problem()
+            print(f"Problem encountered: {problem}, Total latency: {self.latency} minutes")
+            time.sleep(1)
+
+if __name__ == "__main__":
+    simulation = TruckDriverSimulation()
+    simulation.run_simulation(10)  # Run simulation for 10 seconds
